@@ -1,0 +1,31 @@
+@model object
+@{
+	var datas = new List<ListItem>();
+	if (Model != null && !ViewData.ModelMetadata.AdditionalValues.ContainsKey("Data") && Model is Enum)
+	{
+		datas = (Model as Enum).ToListItem(); ;//.Select(p => new SelectListItem() { }).ToList();
+	}
+	else
+	{
+		datas = ViewData.ModelMetadata.AdditionalValues["Data"].ToString().FromJson<List<ListItem>>();
+	}
+
+	var htmlFieldName = ViewData.TemplateInfo.HtmlFieldPrefix;
+	var id = htmlFieldName.Replace(".", "_").Replace("[", "_").Replace("]", "_");
+}
+<span class="k-form-radio-list" id="@id">
+	@foreach (var data in datas)
+	{
+		<span class="k-radio-item">
+
+			@if (Model != null && data.Value == Model.ToString())
+			{
+				<input name="@htmlFieldName" type="radio" checked="checked" value="@data.Value" disabled />@data.Text
+			}
+			else
+			{
+				<input name="@htmlFieldName" type="radio" value="@data.Value" disabled />@data.Text
+			}
+		</span>
+	}
+</span>

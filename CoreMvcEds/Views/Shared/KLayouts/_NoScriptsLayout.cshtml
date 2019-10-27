@@ -1,0 +1,50 @@
+@* 若泰应用开发平台主布局视图，该布局定义了开发平台的主体默认布局，是视图默认加载的布局页面，请不要删除这个文件，自定义布局请继承扩展该布局 *@
+@{
+    Layout = "~/Views/Shared/KLayouts/_BaseLayout.cshtml";
+    var localString = !Html.IsLocal() ? "min." : "";
+}
+@section Script_Link{
+
+    @RenderSection("Script_Link", required: false)
+}
+@section Head_Style_Block{
+    @RenderSection("Head_Style_Block", required: false)
+}
+@section Head_Script_Block{
+    <script>kendo.culture("zh-CN");</script>
+    @RenderSection("Head_Script_Block", required: false)
+}
+@section Header{
+    @RenderSection("Header", required: false)
+}
+
+<div class="k-widget k-grid s-container" style=" margin-top:-8px;">
+    <div class="k-toolbar k-grid-toolbar k-grid-top">
+        <!--标题导航 -->
+        <div class="outside_title">@PlatformContext.ApplicationScreen.Title</div>
+        <!--按钮区域-->
+        @if (IsSectionDefined("ToolsBar"))
+        {
+            <div class="s-f-right" style=" margin-top:6px;">
+                @RenderSection("ToolsBar", false)
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+    <!--查询区域-->
+    @if (IsSectionDefined("Search"))
+    {
+
+        <div class="s-search">
+            @RenderSection("Search", false)
+        </div>
+    }
+
+    <!--内容区域-->
+    @RenderBody()
+
+</div>
+
+@section Footer{
+    @RenderSection("Scripts", required: false)
+}

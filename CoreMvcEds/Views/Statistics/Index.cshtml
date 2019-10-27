@@ -1,0 +1,584 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    string user = (string)ViewBag.User;
+	string unit = (string)ViewBag.Unit;
+}
+
+<h2>Index</h2>
+
+<head>
+    <title>首页测试</title>
+    <style type="text/css">
+        #divtend {
+            position: relative;
+            left: 41px;
+            top: 45px;
+            width: 1216px;
+            height: 380px;
+            overflow: hidden;
+        }
+
+        #divtendtop {
+            position: absolute;
+            top: 10px;
+            left: 16px;
+            /* top:298px; */
+            width: 615px;
+            height: 56px;
+            font-family: 'Microsoft Tai Le Bold', 'Microsoft Tai Le';
+            font-weight: 700;
+            font-style: normal;
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.847058823529412);
+            text-align: left;
+            line-height: 24px;
+        }
+
+        .tabs .tab_button {
+            line-height: 30px;
+            border-radius: 15px;
+            color: #000;
+            border: solid 1px #ccc;
+            padding: 5px 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+            .tabs .tab_button:hover {
+                color: #fff;
+                border: solid 1px #38B996;
+                background: #38B996;
+            }
+
+        .tabs .tab_button_select {
+            color: #fff;
+            border: solid 1px #38B996;
+            background: #38B996;
+            cursor: default;
+        }
+
+        .tab_button {
+            /*position: absolute;*/
+            left: 16px;
+            top: 5px;
+            width: 87px;
+            white-space: nowrap;
+        }
+
+        #tp001 {
+            margin-left: 16px;
+            margin-top: 20px;
+            width: 266px;
+            height: 250px;
+            background: inherit;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        #tp002 {
+            margin-left: 16px;
+            margin-top: 20px;
+            width: 966px;
+            height: 250px;
+            background: inherit;
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        #u6233 {
+            position: relative;
+            left: 20px;
+            top: 10px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(43, 146, 228, 1);
+            font-family: 'Arial Negreta', 'Arial';
+            font-weight: 700;
+            font-size: 72px;
+            color: #FFFFFF;
+            align-items: center;
+            display: -webkit-flex;
+            justify-content: center;
+            display: -webkit-flex;
+        }
+
+        .score_item {
+            float: left;
+            position: relative;
+            top: 5px;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(43, 146, 228, 1);
+            font-family: 'Arial Negreta', 'Arial';
+            font-weight: 700;
+            font-style: normal;
+            font-size: 36px;
+            color: #FFFFFF;
+            align-items: center;
+            display: -webkit-flex;
+            justify-content: center;
+            display: -webkit-flex;
+        }
+
+        .score_title {
+            position: relative;
+            left: 0px;
+            top: 0px;
+            width: 71px;
+            height: 16px;
+            background: inherit;
+            background-color: rgba(255, 255, 255, 0);
+            border: none;
+            border-radius: 0px;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            font-size: 14px;
+        }
+    </style>
+    <link rel="stylesheet" href="~/css/kendo/new/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="~/css/kendo/new/kendo.material.min.css" />
+    <script src="~/js/echarts-4.1.0.js"></script>
+    <script src="~/js/kendo/new/kendo.all.min.js"></script>
+    <script src="~/js/jquery/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+    <div style="background-color:rgba(228, 228, 228, 1);height:800px" data-label="首页">
+        <div id="divtop" style="height:280px;margin-top: 20px;margin-left:20px;margin-right:10px;">
+            <div id="top01" style="float:left;margin-top:20px;width:20%;height:260px;background-color: rgba(255, 255, 255, 1)">
+                <p style="margin-left:25px"><span id="top0101" style="color: rgba(0, 0, 0, 0.427450980392157);">2019/01/24 星期四</span></p>
+                <p style="margin-left:25px"><span style="font-size: 30px;color: rgba(0, 0, 0, 0.847058823529412);line-height: 38px;">@user</span></p>
+                <HR SIZE=1 align=center width="80%">
+                <p style="margin-left:25px"><span style="font-size: 14px;color:rgba(0, 0, 0, 0.647058823529412);">@unit</span></p>
+            </div>
+            <div id="top02" style="float: left;margin-left:20px;margin-top: 20px; width: 78%; height: 260px;background-color: rgba(255, 255, 255, 1)">
+                <div id="top0201" style="height:43px">
+                    <div style="float: left;margin-top:10px">
+                        <span style="margin-left:16px;font-weight: 700;font-style: normal; font-size: 16px;">工程质量评价得分</span>
+                    </div>
+                    <div style="float:right;margin-right:10px;margin-top:3px;">
+                        <div style="float:left;margin-top:10px;">
+                            <span style="color:rgba(0, 0, 0, 0.647058823529412);">本月&nbsp;&nbsp; </span><span style="color:#1890FF;">本季</span><span style="color:rgba(0, 0, 0, 0.647058823529412);">&nbsp;&nbsp; 本年</span>
+                        </div>
+                        <div style="float:left;height:40px;margin-left:10px">
+                            <span>
+                                <input id="datepickerstart" value="10/10/2011" title="datepicker" style="height:38px" />~<input id="datepickerend" value="10/10/2011" title="datepicker" style="height:38px" />
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="top0202" style="height:210px;">
+                    <div id="tp020201" style="float:left;width:20%;height:208px;margin-left:0px;">
+                        <div id="u6233">
+                            <span>95</span>
+                        </div>
+                        <p style="margin-left:20px;width:170px;justify-content: center;display: -webkit-flex;"><span>综合得分</span></p>
+                    </div>
+                    <div id="tp020202" style="float:left;height:208px;width:79%;margin-left:0px;
+                    /*overflow: hidden;overflow-y:scroll;*/">
+                        <div style="height:100px; width:85px; position:relative;">
+                            <div style="margin-top:5px; center;display: -webkit-flex;justify-content: center;display: -webkit-flex;">
+                                <div style="width: 60px;
+                                height: 60px;
+                                background-color: rgba(43, 146, 228, 1);
+                                font-family: 'Arial Negreta', 'Arial';
+                                font-weight: 700;
+                                font-style: normal;
+                                font-size: 36px;
+                                color: #FFFFFF;text-align: center;line-height: 60px;">
+                                    90
+                                </div>
+                            </div>
+                            <div style="height:20px;font-size: 13px;text-align: center;margin-top: 5px;">上海监督局</div>
+                        </div>
+                        <div style="height:100px; width:85px; position:relative;">
+                            <div style="margin-top:5px; center;display: -webkit-flex;justify-content: center;display: -webkit-flex;">
+                                <div style="width: 60px;
+                                height: 60px;
+                                background-color: rgba(43, 146, 228, 1);
+                                font-family: 'Arial Negreta', 'Arial';
+                                font-weight: 700;
+                                font-style: normal;
+                                font-size: 36px;
+                                color: #FFFFFF;text-align: center;line-height: 60px;">
+                                    90
+                                </div>
+                            </div>
+                            <div style="height:20px;font-size: 13px;text-align: center;margin-top: 5px;">沈阳监督局</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="divcenter" style="height:500px;margin-left:20px;margin-right:20px;margin-top:20px;  background-color: rgba(255, 255, 255, 1)">
+            <div id="centter01" style="height:43px">
+                <div style="float: left;margin-top:10px">
+                    <span style="margin-left:16px;font-weight: 700;font-style: normal; font-size: 16px;">倾向性问题分布</span>
+                </div>
+                <div style="float:right;margin-right:10px;margin-top:3px;">
+                    <div style="float:left;margin-top:10px;">
+                        <span style="color:rgba(0, 0, 0, 0.647058823529412);">本月&nbsp;&nbsp; </span><span style="color:#1890FF;">本季</span><span style="color:rgba(0, 0, 0, 0.647058823529412);">&nbsp;&nbsp; 本年</span>
+                    </div>
+                    <div style="float:left;height:40px;margin-left:10px;">
+                        <span>
+                            <input id="datepickerstart" value="10/10/2011" title="datepicker" style="height:38px" />~<input id="datepickerend" value="10/10/2011" title="datepicker" style="height:38px" />
+                        </span>
+                    </div>
+                    <div style="float: left;margin-left:10px;margin-right:10px; line-height:40px;text-align:center">更多</div>
+                </div>
+            </div>
+            <div class="tabs" id="tabs1" style="position:relative;top: 30px">
+                <span class="tab_button tab_button_select" val="质量行为问题">质量行为问题</span>
+                <span class="tab_button" val="安全检查">工程实体质量问题</span>
+                <span class="tab_button" val="旁站记录">安全行为问题</span>
+                <span class="tab_button" val="隐蔽工程视频">现场安全问题</span>
+            </div>
+            <div id="divtend" class="ax_default" data-label="检查数据分布">
+                <div id="chartleft" style="float:left;width:48%;height:400px;"></div>
+                <div id="chartright" style="float: left; width: 48%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="startpoint_grid"></div>
+
+</body>
+<script type="text/javascript">
+	$(function () {
+		var span = document.getElementById("top0101");
+		var now = new Date();
+		span.innerHTML = now.Format("yyyy/MM/dd w");
+
+		$("#datepickerstart").kendoDatePicker();
+		$("#datepickerend").kendoDatePicker();
+	});
+
+	var divleftchart = document.getElementById("chartleft");
+	// 圆环图各环节的名称和值(系列中各数据项的名称和值)
+	var char1data = [{
+		"InspectionObject": "质量行为问题", "SubDistributionStatisticsList": [{
+			name: '施工单位',
+			value: 44,
+			inspectList: [{ name: "现场管理", value: 14 },
+			{ name: "方案编制", value: 15 },
+			{ name: "问题整改", value: 7 },
+			{ name: "施工记录", value: 5 },
+			{ name: "质量检测", value: 3 }
+			]
+		}
+			, {
+			name: '监理单位',
+			value: 25,
+			inspectList: [{ name: "现场管理1", value: 4 },
+			{ name: "方案编制1", value: 15 },
+			{ name: "问题整改1", value: 7 },
+			{ name: "施工记录1", value: 5 },
+			{ name: "质量检测1", value: 3 }
+			]
+		}, {
+			name: '第三方检测单位',
+			value: 20
+		}, {
+			name: '勘察设计单位',
+			value: 12
+		}, {
+			name: '建设单位',
+			value: 11
+		}
+		]
+	},
+	{
+		"InspectionObject": "工程实体质量问题", "SubDistributionStatisticsList": [{
+			name: '隧道工程',
+			value: 43
+		}, {
+			name: '桥涵工程',
+			value: 24
+		}, {
+			name: '路基工程',
+			value: 19
+		}, {
+			name: '轨道工程',
+			value: 12
+		}, {
+			name: '四电工程',
+			value: 11
+		}
+		]
+	},
+	];
+	var currtitle = '质量行为问题分布';
+	var obj = char1data.find(function (x) {
+		return x.InspectionObject === "质量行为问题"
+	});
+
+    loadTend(divleftchart, currtitle, obj.SubDistributionStatisticsList);
+
+    $("#startpoint_grid").kendoGrid({
+            dataSource: [
+                { Airport: "1号航站" },
+                { StartPoint: "出港点" },
+                { Airport: "1号航站" },
+                { StartPoint: "出港点Q" }
+            ],
+            columns: [
+                { field: "Airport", title: "航站" },
+                { field: "StartPoint", title: "出港点" }
+            ],
+            dataBound: function () {
+                var dimension_col = 1;
+                var first_instance = null;
+                var rowspan = 0;
+                $('#startpoint_grid>table>tbody').find("tr").each(function () {
+                    var dimension_td = $(this).find('td:nth-child(' + dimension_col + ')');
+                    if (first_instance == null) {
+                        first_instance = dimension_td;
+                        rowspan = 0;
+                    } else if (dimension_td.text() == first_instance.text()) {
+                        $('#startpoint_grid>table>tbody').find('tr').each(function () {
+                            if ($(this).find('td:nth-child(' + dimension_col + ')').text() == first_instance.text()) {
+                                rowspan++;
+                            }
+                        });
+                        dimension_td.hide();
+                        first_instance.attr('rowspan', rowspan);
+                        rowspan = 0;
+                    } else {
+                        rowspan = 0;
+                        first_instance = dimension_td;
+                    }
+                    return;
+                });
+            },
+            scrollable: false,
+            selectable: true,
+            pageable: false
+    });
+
+	function loadTend(chartdom, chartitle, data) {
+		var chart = echarts.init(chartdom);
+		console.log(chart);
+		var legenddata = [];
+		var total = 0;
+		if (data != null) {
+			$.each(data, function (n, item) {
+				legenddata.push(item.name);
+				total += parseFloat(item.value);
+			});
+		}
+
+		// 圆环图各环节的颜色
+		//var color = ['#0000FF', '#00ffff', '#00ff00', '#ffff00'];
+		// 指定图表的配置项和数据
+		var option = {
+			//背景色
+			// backgroundColor: {			// 背景颜色
+			//     type: 'linear',
+			//     x: 0,
+			//     y: 0,
+			//     x2: 0,
+			//     y2: 1,
+			//     colorStops: [{
+			//         offset: 0, color: 'rgba(0,0,0,0.4)' // 0% 处的颜色
+			//     }, {
+			//         offset: 0.5, color: 'rgba(0,0,0,0.4)' 	// 50% 处的颜色
+			//     }, {
+			//         offset: 1, color: 'rgba(0,0,0,0.4)' // 100% 处的颜色
+			//     }],
+			//     globalCoord: false // 缺省为 false
+			// },
+
+			// 标题
+			title: [{
+				text: chartitle,
+				top: '5%',
+				left: '3%',
+				textStyle: {
+					color: '#000',
+					fontSize: 18,
+				}
+			}],
+
+			// 图例
+			legend: [{
+				selectedMode: true,             // 图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。
+				top: '10%',
+				right: 'right',
+				textStyle: {                      // 图例的公用文本样式。
+					fontSize: 14,
+					color: '#000'
+				},
+				data: legenddata
+			}],
+			// 提示框
+			tooltip: {
+				show: true,                 // 是否显示提示框
+				formatter: '{b} </br> 销量{c}件 </br> 占比{d}%'      // 提示框显示内容,此处{b}表示各数据项名称，此项配置为默认显示项，{c}表示数据项的值，默认不显示，({d}%)表示数据项项占比，默认不显示。
+			},
+
+			// graphic 是原生图形元素组件。可以支持的图形元素包括：image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+			graphic: {
+				type: 'text',               // [ default: image ]用 setOption 首次设定图形元素时必须指定。image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+				top: 'center',              // 描述怎么根据父元素进行定位。top 和 bottom 只有一个可以生效。如果指定 top 或 bottom，则 shape 里的 y、cy 等定位属性不再生效。『父元素』是指：如果是顶层元素，父元素是 echarts 图表容器。如果是 group 的子元素，父元素就是 group 元素。
+				left: 'center',             // 同上
+				style: {
+					text: chartitle + total,       // 文本块文字。可以使用 \n 来换行。[ default: '' ]
+					fill: '#FF9900',           // 填充色。
+					fontSize: 16,           // 字体大小u6218
+					fontWeight: 'bold'		// 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+				}
+			},
+
+			// 系列列表
+			series: [{
+				name: '圆环图系列名称',         // 系列名称
+				type: 'pie',                    // 系列类型
+				center: ['50%', '50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
+				radius: ['45%', '61%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
+				hoverAnimation: true,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
+				//color: color,                   // 圆环图的颜色
+				label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+					normal: {
+						show: true,             // 是否显示标签[ default: false ]
+						position: 'outside',    // 标签的位置。'outside'饼图扇区外侧，通过视觉引导线连到相应的扇区。'inside','inner' 同 'inside',饼图扇区内部。'center'在饼图中心位置。
+						formatter: '{b} : {c}件'  // 标签内容
+					}
+				},
+				labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+					normal: {
+						show: true,             // 是否显示视觉引导线。
+						length: 15,             // 在 label 位置 设置为'outside'的时候会显示视觉引导线。
+						length2: 10,            // 视觉引导项第二段的长度。
+						lineStyle: {            // 视觉引导线的样式
+							//color: '#000',
+							//width: 1
+						}
+					}
+				},
+				data: data                      // 系列中的数据内容数组。
+			}]
+		};
+
+		chart.setOption(option, true)
+
+		chart.on('click', function (param) {
+			var rightchart = echarts.init(document.getElementById("chartright"));
+			console.log(param);
+			var currseries = option.series[param.seriesIndex];
+			var piedata = currseries.data[param.dataIndex];
+			if (piedata == null)
+				return;
+			var rightchartdata = piedata.inspectList;
+			if (rightchartdata == null)
+				return;
+			//console.log(option.series[param.seriesIndex].data[param.dataIndex].inspectList);
+			loadChildTend(rightchart, piedata.name, rightchartdata);
+		});
+	}
+	function loadChildTend(chartright, chartitle, data) {
+		var legenddata = [];
+		var total = 0;
+		$.each(data, function (n, item) {
+			legenddata.push(item.name);
+			total += parseFloat(item.value);
+		});
+		var option = {
+			// 图例
+			legend: [{
+				selectedMode: true,             // 图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。
+				top: '10%',
+				right: 'right',
+				textStyle: {                      // 图例的公用文本样式。
+					fontSize: 14,
+					color: '#000'
+				},
+				data: legenddata
+			}],
+			// 提示框
+			tooltip: {
+				show: true,                 // 是否显示提示框
+				formatter: '{b} </br> 销量{c}件 </br> 占比{d}%'      // 提示框显示内容,此处{b}表示各数据项名称，此项配置为默认显示项，{c}表示数据项的值，默认不显示，({d}%)表示数据项项占比，默认不显示。
+			},
+			graphic: {
+				type: 'text',               // [ default: image ]用 setOption 首次设定图形元素时必须指定。image, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+				top: 'center',              // 描述怎么根据父元素进行定位。top 和 bottom 只有一个可以生效。如果指定 top 或 bottom，则 shape 里的 y、cy 等定位属性不再生效。『父元素』是指：如果是顶层元素，父元素是 echarts 图表容器。如果是 group 的子元素，父元素就是 group 元素。
+				left: 'center',             // 同上
+				style: {
+					text: chartitle + total,       // 文本块文字。可以使用 \n 来换行。[ default: '' ]
+					fill: '#FF9900',           // 填充色。
+					fontSize: 16,           // 字体大小
+					fontWeight: 'bold'		// 文字字体的粗细，可选'normal'，'bold'，'bolder'，'lighter'
+				}
+			},
+
+			// 系列列表
+			series: [{
+				name: '圆环图系列名称',         // 系列名称
+				type: 'pie',                    // 系列类型
+				center: ['50%', '50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
+				radius: ['45%', '61%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
+				hoverAnimation: true,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
+				//color: color,                   // 圆环图的颜色
+				label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+					normal: {
+						show: true,             // 是否显示标签[ default: false ]
+						position: 'outside',    // 标签的位置。'outside'饼图扇区外侧，通过视觉引导线连到相应的扇区。'inside','inner' 同 'inside',饼图扇区内部。'center'在饼图中心位置。
+						formatter: '{b} : {c}件'  // 标签内容
+					}
+				},
+				labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+					normal: {
+						show: true,             // 是否显示视觉引导线。
+						length: 15,             // 在 label 位置 设置为'outside'的时候会显示视觉引导线。
+						length2: 10,            // 视觉引导项第二段的长度。
+						lineStyle: {            // 视觉引导线的样式
+							//color: '#000',
+							//width: 1
+						}
+					}
+				},
+				data: data                      // 系列中的数据内容数组。
+			}]
+		};
+
+		// 使用刚指定的配置项和数据显示图表
+		chartright.setOption(option)
+	}
+
+	$(".tabs").find(".tab_button").click(function () {
+		let $ele = $(this);
+		if (!$ele.hasClass("tab_button_select")) {
+			$ele.siblings(".tab_button").removeClass("tab_button_select");
+			$ele.addClass("tab_button_select");
+			currtitle = $("#tabs1 .tab_button_select").html();
+			let obj = char1data.find(function (x) {
+				return x.InspectionObject === currtitle;
+			})
+			if (obj != undefined && obj != null && obj.SubDistributionStatisticsList != null) {
+				loadTend(divleftchart, currtitle, obj.SubDistributionStatisticsList);
+			}
+			else {
+				loadTend(divleftchart, currtitle, null);
+				//$("#chartleft").empty();
+				//document.getElementById("chartleft").innerHTML = "";
+				//return;
+			}
+
+		}
+	});
+
+	Date.prototype.Format = function (formatStr) {
+		var str = formatStr;
+		var Week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+		str = str.replace(/yyyy|YYYY/, this.getFullYear());
+		str = str.replace(/MM/, (this.getMonth() + 1) > 9 ? (this.getMonth() + 1).toString() : '0' + (this.getMonth() + 1));
+		str = str.replace(/dd|DD/, this.getDate() > 9 ? this.getDate().toString() : '0' + this.getDate());
+		str = str.replace(/w|W/g, Week[this.getDay()]);
+		return str;
+	}
+
+	function drawItem() {
+
+	}
+</script>

@@ -1,0 +1,243 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/KLayouts/_GridViewLayout.cshtml";
+    var hasEditRole = User.IsInRole("SupervisedDataModule.配置");
+
+}
+@section ToolsBar{
+
+}
+
+@section Search{
+    <div id="tabstrip">
+        <ul>
+            <li class="k-state-active">
+                质量行为
+            </li>
+            <li>
+                工程实体质量
+            </li>
+            <li>
+                安全行为
+            </li>
+            <li>
+                现场安全
+            </li>
+        </ul>
+        <div>
+            <div class="inline-label">
+                <span class="lable1">线路:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">单位类型:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">参建单位:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">监督机构:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">检查人:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">检查时间:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("查询").HtmlAttributes(new { type = "button" }))
+                </span>
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-cancel").Content("清空条件").HtmlAttributes(new { type = "button" }))
+                </span>
+            </div>
+            <div class="weather">
+                @(Html.Kendo().Grid<Telsafe.Metro.BasicModules.SupervisedDataModules.Models.TestDataModel>().Name("ListGrid1").Scrollable()
+                        .Columns(columns =>
+                        {
+                            columns.Bound(p => p.InspectID).Width(60).TextAlignCenter().Title("检查单编号");
+                            columns.Bound(p => p.InspectName).Width(120).TextAlignCenter().Title("检查表名");
+                            columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("线路");
+                            columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("单位类型");
+                            columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("参建单位");
+                            columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("监督机构");
+                            columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查人");
+                            columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("得分");
+                            columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查时间");
+                            columns.Bound(p => p.InspectID).TextAlignCenter().ClientTemplate(@<text>
+                                        @Html.CommandButton("详情", "s-i-msg", "supervisedData.Detail('#:InspectID#');")
+                                        @Html.CommandButton("删除", "s-i-del", "supervisedData.del('#:InspectID#');")
+                            </text>).Width(130).Title("操作");
+                                     }).DataSource("GetList", "SupervisedData", pageable: true, pagaSize: 20)//.Events(e => e.DataBound("ParUnit.DataBound"))
+                )
+            </div>
+        </div>
+        <div>
+            <div class="inline-label">
+                <span class="lable1">线路:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">标段:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">专业类型:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">监督机构:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">检查人:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">检查时间:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("查询").HtmlAttributes(new { type = "button" }))
+                </span>
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("清空条件").HtmlAttributes(new { type = "button" }))
+                </span>
+            </div>
+            <div class="weather">
+                @(Html.Kendo().Grid<Telsafe.Metro.BasicModules.SupervisedDataModules.Models.TestDataModel>().Name("ListGrid2").Scrollable()
+                    .Columns(columns =>
+                    {
+                        columns.Bound(p => p.InspectID).Width(60).TextAlignCenter().Title("检查单编号");
+                        columns.Bound(p => p.InspectName).Width(120).TextAlignCenter().Title("检查表名");
+                        columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("线路");
+                        columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("标段");
+                        columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("专业类型");
+                        columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("监督机构");
+                        columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查人");
+                        columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("得分");
+                        columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查时间");
+                        columns.Bound(p => p.InspectID).TextAlignCenter().ClientTemplate(@<text>
+                                    @Html.CommandButton("详情", "s-i-msg", "supervisedData.Detail('#:InspectID#');")
+                                    @Html.CommandButton("删除", "s-i-del", "supervisedData.del('#:InspectID#');")
+                        </text>).Width(130).Title("操作");
+                             }).DataSource("GetList", "SupervisedData", pageable: true, pagaSize: 20)
+                )
+            </div>
+        </div>
+        <div>
+            <span class="sunny">&nbsp;</span>
+            <div class="inline-label">
+                <span class="lable1">姓名:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("查询").HtmlAttributes(new { type = "button" }))
+                </span>
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("清空条件").HtmlAttributes(new { type = "button" }))
+                </span>
+            </div>
+            <div class="weather">
+                @(Html.Kendo().Grid<Telsafe.Metro.BasicModules.SupervisedDataModules.Models.TestDataModel>().Name("ListGrid3").Scrollable()
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("姓名");
+                                    columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查单编号");
+                                }).DataSource("GetList", "SupervisedData", pageable: true, pagaSize: 20)
+                )
+            </div>
+        </div>
+        <div>
+            <span class="cloudy">&nbsp;</span>
+            <div class="inline-label">
+                <span class="lable1">姓1名:</span>
+                <span class="field1">
+                    <input class="k-textbox" id="searchValue" name="searchValue" style="width:200px;" value="">
+                </span>
+            </div>
+            <div class="inline-label">
+                <span class="lable1">
+                    @(Html.Kendo().Button().Name("GetUnitManagerData").SpriteCssClass("k-icon k-search").Content("查询").HtmlAttributes(new { type = "button" }))
+                </span>
+            </div>
+            <div class="weather">
+                @(Html.Kendo().Grid<Telsafe.Metro.BasicModules.SupervisedDataModules.Models.TestDataModel>().Name("ListGrid4").Scrollable()
+                                .Columns(columns =>
+                                {
+                                    columns.Bound(p => p.InspectName).Width(60).TextAlignCenter().Title("姓名");
+                                    columns.Bound(p => p.InspectID).Width(120).TextAlignCenter().Title("检查单编号");
+                                }).DataSource("GetList2", "SupervisedData", pageable: true, pagaSize: 20)
+                )
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+}
+
+<script>
+	//$(function () {
+	//	$("#btnadd").hide();
+	//});
+	$(document).ready(function () {
+		$("#tabstrip").kendoTabStrip({
+			animation: {
+				open: {
+					effects: "fadeIn"
+				}
+			}
+		});
+	});
+
+	//详情-url
+	function RedirectDownLoad(id, type) {
+		//window.location.href="/InspectXML/PreviewInspectBad?id=" + id + "&type=" + type;
+		window.open("/InspectXML/PreviewInspectBad?id=" + id + "&type=" + type);
+	}
+	//详情-弹出框
+	function edit(LineID) {
+		if (LineID && LineID.length > 0) {
+			showDlg("线路维护功能-修改", "/Line/LineEdit?id=" + LineID);
+		}
+		else {
+			alert("请先选中数据");
+		}
+	}
+</script>

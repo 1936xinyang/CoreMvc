@@ -1,0 +1,22 @@
+﻿@model CoreMvcEds.Models.UserViewModel
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Template</title>
+</head>
+<body>
+    @Html.TextBoxFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Age)
+    @Html.LabelFor(model => model.Birthday)
+    @Html.DisplayFor(model => model.Birthday)
+    @Html.LabelFor(model => model.Sex)
+    @Html.DisplayFor(model => model.Sex)
+</body>
+</html>

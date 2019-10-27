@@ -1,0 +1,126 @@
+﻿@model InspectItemModel
+@{
+    ViewData["Title"] = "Detail";
+}
+<h2>Detail</h2>
+<head>
+    <link rel="stylesheet" href="~/css/lightbox/lightbox.css" />
+    <script src="~/js/jquery/jquery-2.2.1.min.js"></script>
+    <script src="~/js/lightbox/lightbox.min.js"></script>
+    <link rel="stylesheet" href="~/css/kendo/new/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="~/css/kendo/new/kendo.material.min.css" />
+    <script src="~/js/kendo/new/kendo.all.min.js"></script>
+
+</head>
+<body>
+    <div class="divpicture">
+        <ul>
+            @{
+                var images = Model.Files.Split(',');
+                foreach (var im in images)
+                {
+                    <li>
+                        <a href="/images/@(im.Replace("-", "/"))" class="lightbox" rel="picp">
+                            <img src="/Files/@(im.Replace("-", "/"))" />
+                        </a><span class="images" style="display: none;">点击查看大图</span>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</body>
+<div id="grid" style="border-top:solid 1px #000000"></div>
+<div id="id" style="border-top:solid 1px #000000"></div>
+
+
+<script>
+    $("#grid").kendoGrid({
+        columns: [
+            { field: "firstName" },
+            { field: "lastName" }, /* group by this column to see the footer template */
+            {
+                field: "age",
+                aggregates: ["count", "min", "max"],
+                groupFooterTemplate: "age total: #: count #, min: #: min #, max: #: max #"
+            }
+        ],
+        dataSource: {
+            data: [
+                { firstName: "Jane", lastName: "Doe1", age: 31 },
+                { firstName: "Jane", lastName: "Doe2", age: 30 },
+                { firstName: "Sam", lastName: "Sam", age: 30 },
+                { firstName: "Sam", lastName: "Sam", age: 30 },
+                { firstName: "Sam", lastName: "Doe", age: 30 },
+                { firstName: "John", lastName: "John", age: 30 },
+                { firstName: "John", lastName: "John", age: 30 },
+                //{ firstName: "John", lastName: "Doe", age: 33 },
+                { firstName: "dean", lastName: "x.liu", age: 30 },
+                { firstName: "dean", lastName: "x.liu", age: 30 },
+                //{ firstName: "John", lastName: "Doe", age: 33 },
+            ]
+        },
+        dataBound: function () {
+            $('#grid>.k-grid-content>table').each(function (index, item) {
+
+                var dimension_col = 1;
+                // First, scan first row of headers for the "Dimensions" column.
+                $('#grid>.k-grid-header>.k-grid-header-wrap>table').find('th').each(function () {
+                    if ($(this).text() == 'firstName') {
+
+                        // first_instance holds the first instance of identical td
+                        var first_instance = null;
+                        var rowspan = 0;
+                        $(item).find('tr').each(function () {
+                            // find the td of the correct column (determined by the colTitle)
+                            var dimension_td = $(this).find('td:nth-child(' + dimension_col + ')');
+
+                            if (first_instance == null) {
+                                first_instance = dimension_td;
+                                rowspan = 0;
+                                //$(first_instance).css('border-top', 'solid 1px #000000');
+                            } else if (dimension_td.text() == first_instance.text()) {
+                                // if current td is identical to the previous
+                                // then remove the current td
+                                //rowspan++;
+                                $(item).find('tr').each(function () {
+                                    if ($(this).find('td:nth-child(' + dimension_col + ')').text() == first_instance.text()) {
+                                        rowspan++;
+                                    }
+                                });
+
+                                dimension_td.hide();
+                                first_instance.attr('rowspan', rowspan);
+                                rowspan = 0;
+                                // increment the rowspan attribute of the first instance
+                                //$(item).find('tr').each(function () {
+                                //    if ($(this).find('td:nth-child(' + dimension_col + ')').text() == first_instance.text()) {
+                                //        rowspan++;
+                                //    }
+                                //});
+
+                                //first_instance.attr('rowspan',  first_instance.attr('rowspan') == "undefined" ? 2 : first_instance.attr('rowspan') + 1);
+
+                                //first_instance.attr('rowspan', typeof first_instance.attr('rowspan') == "undefined" ? 2 : first_instance.attr('rowspan') + 1);
+                            } else {
+                                rowspan = 0;
+                                // this cell is different from the last
+                                first_instance = dimension_td;
+                                $(first_instance).css('border-top', 'solid 1px #000000');
+                            }
+                        });
+                        return;
+                    }
+                    dimension_col++;
+                });
+
+            });
+        }
+    });
+
+    $('#grid table').mergeCell({
+					cols: [1, 2]
+				});
+
+
+</script>
+

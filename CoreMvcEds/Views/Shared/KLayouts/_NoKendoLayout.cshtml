@@ -1,0 +1,31 @@
+﻿@* 若泰应用开发平台主布局视图，该布局定义了开发平台的主体默认布局，是视图默认加载的布局页面，请不要删除这个文件，自定义布局请继承扩展该布局 *@
+@{
+    Layout = "~/Views/Shared/KLayouts/_BaseLayout.cshtml";
+}
+@section Style_Link{
+    @RenderSection("Style_Link", required: false)
+}
+@section Script_Link{
+    @(PlatformContext.ApplicationScreen.ScriptLinks
+                             .Add("~/Asserts/scripts/lib/jquery/jquery-1.9.1.min.js?")
+                             .Load())
+    @RenderSection("Script_Link", required: false)
+}
+@section Head_Style_Block{
+    @RenderSection("Head_Style_Block", required: false)
+}
+@section Head_Script_Block{
+    @RenderSection("Head_Script_Block", required: false)
+}
+@section Header{
+    @RenderSection("Header", required: false)
+}
+
+@RenderBody()
+
+@section Footer{
+    @RenderSection("Footer", required: false)
+}
+@section Foot_Script_Block{
+    @RenderSection("Foot_Script_Block", required: false)
+}

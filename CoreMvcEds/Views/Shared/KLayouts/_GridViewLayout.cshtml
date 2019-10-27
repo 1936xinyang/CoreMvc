@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/KLayouts/_PlatformLayout.cshtml";
+}
+
+<div class="k-widget k-grid s-container" style="margin-top:0px;">
+    <div class="k-toolbar k-grid-toolbar k-grid-top r-lock-title" >
+        <!--标题导航 -->
+        <div class="outside_title">标题导航</div>
+        <!--按钮区域-->
+        @if (IsSectionDefined("ToolsBar"))
+        {
+            <div class="s-f-right">
+                @RenderSection("ToolsBar", false)
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+    <div class="r-lock-body">
+        <!--查询区域-->
+        @if (IsSectionDefined("Search"))
+        {
+
+            <div class="s-search">
+                @RenderSection("Search", false)
+            </div>
+        }
+
+        <!--内容区域-->
+        @RenderBody()
+    </div>
+</div>
+
+@section Foot_Script_Block
+    {
+    @RenderSection("Scripts", required: false)
+}

@@ -1,0 +1,25 @@
+﻿@* 若泰应用开发平台基础布局视图，该布局定义了 Web 页面的主体结构，请不要删除修改这个文件，自定义布局请继承扩展该布局 *@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>@PlatformContext.ApplicationScreen.Title </title>
+    <meta http-equiv="Content-Type" content="@PlatformContext.ApplicationScreen.ContentType" />
+    <meta http-equiv="X-UA-Compatible" content="@PlatformContext.ApplicationScreen.IECompatible">
+    <meta name="viewport" content="@PlatformContext.ApplicationScreen.Viewport" />
+    <meta name="keywords" content="@PlatformContext.ApplicationScreen.Keyword" />
+    <meta name="description" content="@PlatformContext.ApplicationScreen.Description" />
+    @RenderSection("Style_Link", required: false)
+    @RenderSection("Script_Link", required: false)
+    @RenderSection("Head_Style_Block", required: false)
+    @RenderSection("Head_Script_Block", required: false)   
+</head>
+<body>
+    @RenderSection("Header", required: false)
+    @RenderBody()
+    @RenderSection("Footer", required: false)
+    @RenderSection("Foot_Script_Block", required: false)
+
+
+   
+</body>
+</html>

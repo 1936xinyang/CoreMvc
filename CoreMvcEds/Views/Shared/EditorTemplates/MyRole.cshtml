@@ -1,0 +1,7 @@
+﻿@model CoreMvcEds.Models.Role
+<select id="role" name="role">
+    @foreach (CoreMvcEds.Models.Role item in Enum.GetValues(typeof(CoreMvcEds.Models.Role)))
+    {
+        <option value="@item" @(Model= =item?"selected =true":"")>@item</option>
+    }
+</select>

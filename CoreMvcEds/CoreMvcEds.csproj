@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\Shared\DisplayTemplates\**" />
+    <Compile Remove="Views\Shared\EditorTemplates\**" />
+    <Compile Remove="Views\Shared\KLayouts\**" />
+    <Content Remove="Views\Shared\DisplayTemplates\**" />
+    <Content Remove="Views\Shared\EditorTemplates\**" />
+    <Content Remove="Views\Shared\KLayouts\**" />
+    <EmbeddedResource Remove="Views\Shared\DisplayTemplates\**" />
+    <EmbeddedResource Remove="Views\Shared\EditorTemplates\**" />
+    <EmbeddedResource Remove="Views\Shared\KLayouts\**" />
+    <None Remove="Views\Shared\DisplayTemplates\**" />
+    <None Remove="Views\Shared\EditorTemplates\**" />
+    <None Remove="Views\Shared\KLayouts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Shared\DateTime.cshtml" />
+    <Content Remove="Views\SupervisedData\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Shared\DisplayTemplates\Date.cshtml" />
+    <None Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <None Include="Views\Shared\DisplayTemplates\Radio.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\MyRole.cshtml" />
+    <None Include="Views\Shared\EditorTemplates\YesOrNo.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>lib\Kendo.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
